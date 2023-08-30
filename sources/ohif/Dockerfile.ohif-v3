@@ -5,8 +5,10 @@
 ######################################################
 
 FROM node:16.15.0-slim as builder
+# add python3 and build essentials
+RUN apt-get update && apt-get install -y git python3 build-essential && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y git
 
 WORKDIR /sources
 

@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2022 - 2023 Orthanc Team SRL <info@orthanc.team>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+FROM nginx:1.23
+
+RUN mkdir /etc/nginx/enabled-reverse-proxies
+RUN mkdir /scripts
+
+ADD nginx/reverse-proxy.* /etc/nginx/disabled-reverse-proxies/
+
+ADD nginx/orthanc-nginx-*.conf /etc/nginx/disabled-conf/
+
+COPY nginx/docker-entrypoint.sh /scripts/
+
+RUN ls -al /etc/nginx/disabled-reverse-proxies/
+
+ENTRYPOINT ["./scripts/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
+

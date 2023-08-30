@@ -4,4 +4,4 @@
 
 .idea/
 .venv/
-*.py[cod]
+*.py[cod]!/sources/build_images.sh
